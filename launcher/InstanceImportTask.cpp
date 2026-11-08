@@ -167,6 +167,18 @@ void InstanceImportTask::processZipPack()
         emitFailed(tr("Unable to open supplied modpack zip file."));
         return;
     }
+    // Some MultiMC exports (including KilmorRPG source packs) also contain
+    // a nested CurseForge manifest. Prefer the Flame installer when both
+    // metadata formats are present, otherwise MultiMC would create a NullInstance.
+    if (m_modpackType == ModpackType::MultiMC && !root.isEmpty()) {
+        const QString flameManifest = FS::PathCombine(root, "flame/manifest.json");
+        auto manifestFile = packZip.goToFile(flameManifest);
+        if (manifestFile) {
+            qDebug() << "Hybrid MultiMC/Flame pack detected:" << flameManifest;
+            m_modpackType = ModpackType::Flame;
+        }
+    }
+
     if (m_modpackType == ModpackType::Unknown) {
         emitFailed(tr("Archive does not contain a recognized modpack type."));
         return;
@@ -228,6 +240,29 @@ void InstanceImportTask::extractFinished()
                 logWarning(tr("Could not fix permissions for %1").arg(filepath));
             } else {
                 qDebug() << "Fixed" << filepath;
+            }
+        }
+    }
+
+    // Normalize the hybrid MultiMC/CurseForge export layout before
+    // handing it to FlameCreationTask. The Flame importer expects manifest.json
+    // at the staging root and the manifest's overrides directory at "overrides".
+    if (m_modpackType == ModpackType::Flame) {
+        const QString rootManifest = FS::PathCombine(m_stagingPath, "manifest.json");
+        const QString nestedManifest = FS::PathCombine(m_stagingPath, "flame/manifest.json");
+        if (!QFileInfo::exists(rootManifest) && QFileInfo::exists(nestedManifest)) {
+            if (!FS::move(nestedManifest, rootManifest)) {
+                emitFailed(tr("Could not prepare the embedded CurseForge manifest."));
+                return;
+            }
+        }
+
+        const QString minecraftPath = FS::PathCombine(m_stagingPath, "minecraft");
+        const QString overridesPath = FS::PathCombine(m_stagingPath, "overrides");
+        if (QFileInfo(minecraftPath).isDir() && !QFileInfo::exists(overridesPath)) {
+            if (!FS::move(minecraftPath, overridesPath)) {
+                emitFailed(tr("Could not prepare the modpack overrides directory."));
+                return;
             }
         }
     }
