@@ -17,11 +17,15 @@ on:
       - "**.h"
       - "**.java"
       - "**.ui"
+      - "**.qss"
+      - "**.qrc"
+      - "**.png"
 
       # Directories
       - "buildconfig/**"
       - "cmake/**"
       - "launcher/**"
+      - "themes/**"
       - "libraries/**"
       - "program_info/**"
       - "tests/**"
