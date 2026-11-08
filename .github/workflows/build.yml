@@ -9,6 +9,7 @@ on:
     branches:
       - "develop"
       - "release-*"
+      - "fantasy-realms-branding"
     paths:
       # File types
       - "**.cpp"
