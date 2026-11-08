@@ -66,6 +66,9 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QProgressDialog>
+#include <QPushButton>
+#include <QFrame>
+#include <QVBoxLayout>
 #include <QShortcut>
 #include <QStatusBar>
 #include <QToolBar>
