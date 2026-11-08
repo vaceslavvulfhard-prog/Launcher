@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: kilmorrpg-ely-auth
+    runtime: node
+    plan: free
+    branch: develop
+    rootDir: services/ely-auth
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: ELY_CLIENT_ID
+        sync: false
+      - key: ELY_CLIENT_SECRET
+        sync: false
+      - key: ELY_REDIRECT_URI
+        value: https://kilmorrpg-ely-auth.onrender.com/oauth/ely
