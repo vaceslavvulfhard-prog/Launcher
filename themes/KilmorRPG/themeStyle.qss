@@ -75,3 +75,86 @@ QHeaderView::section {
     border: 1px solid #68418c;
     padding: 5px;
 }
+
+
+/* KilmorRPG stone-and-amethyst home screen */
+QFrame#kilmorSidebar {
+    background-color: rgba(24, 15, 34, 238);
+    border-right: 2px solid #79509a;
+}
+QLabel#kilmorEyebrow {
+    color: #c9a4e8;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+QLabel#kilmorBrand {
+    color: #f5eaff;
+    font-size: 27px;
+    font-weight: 900;
+}
+QLabel#kilmorSubtitle {
+    color: #b994d7;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+QPushButton#kilmorNavButton {
+    text-align: left;
+    padding: 10px 14px;
+    color: #f1e5fb;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #51405d, stop:0.16 #3b2d46, stop:0.85 #292032, stop:1 #1d1725);
+    border: 1px solid #80649a;
+    border-top-color: #b49ac8;
+    border-bottom: 3px solid #17111d;
+    border-radius: 4px;
+    font-weight: 700;
+}
+QPushButton#kilmorNavButton:hover {
+    background-color: #624777;
+    border-color: #d1a6f0;
+}
+QPushButton#kilmorNavButton:pressed {
+    padding-top: 12px;
+    border-bottom-width: 1px;
+}
+QWidget#kilmorContent {
+    background-color: rgba(18, 12, 26, 105);
+}
+QWidget#kilmorLaunchBar {
+    background-color: rgba(28, 18, 40, 225);
+    border: 1px solid #76518f;
+    border-top: 2px solid #a47ac2;
+    border-radius: 5px;
+    padding: 8px;
+}
+QLabel#kilmorLaunchHint {
+    color: #d7c4e8;
+    font-size: 12px;
+}
+QPushButton#kilmorMainPlayButton {
+    color: #fff8ff;
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #8760a3, stop:0.12 #65447e, stop:0.8 #382347, stop:1 #24172e);
+    border: 2px solid #c39add;
+    border-top-color: #e0c2f5;
+    border-bottom: 4px solid #17101f;
+    border-radius: 5px;
+    padding: 8px 24px;
+}
+QPushButton#kilmorMainPlayButton:hover {
+    background-color: #8055a1;
+    border-color: #f0d9ff;
+}
+QPushButton#kilmorMainPlayButton:pressed {
+    padding-top: 11px;
+    border-bottom-width: 1px;
+}
+QLabel#kilmorVersion {
+    color: #aa91bd;
+    font-size: 10px;
+}
