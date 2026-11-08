@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/kilmorrpg">
+    <file alias="background.png">background.png</file>
+    <file alias="themeStyle.qss">../../../../themes/KilmorRPG/themeStyle.qss</file>
+  </qresource>
+</RCC>
