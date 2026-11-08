@@ -252,10 +252,10 @@
     <iconset theme="cat"/>
    </property>
    <property name="text">
-    <string>&amp;Meow</string>
+    <string>KilmorRPG &amp; Background</string>
    </property>
    <property name="toolTip">
-    <string>It's a fluffy kitty :3</string>
+    <string>Show or hide the KilmorRPG fantasy background.</string>
    </property>
   </action>
   <action name="actionToggleStatusBar">
