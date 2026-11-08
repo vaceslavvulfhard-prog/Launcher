@@ -46,6 +46,7 @@
 #include "ui_MainWindow.h"
 
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QUrl>
 #include <QUrlQuery>
@@ -152,6 +153,12 @@ QString profileInUseFilter(const QString& profile, bool used)
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Apply the bundled KilmorRPG home-screen theme and scene artwork.
+    QFile kilmorThemeFile(QStringLiteral(":/kilmorrpg/themeStyle.qss"));
+    if (kilmorThemeFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qApp->setStyleSheet(qApp->styleSheet() + QString::fromUtf8(kilmorThemeFile.readAll()));
+    }
 
     setWindowIcon(APPLICATION->logo());
     setWindowTitle(APPLICATION->applicationDisplayName());
@@ -339,8 +346,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         // KilmorRPG home layout: keep the real instance browser and launcher actions.
         auto sidebar = new QFrame(ui->centralWidget);
         sidebar->setObjectName(QStringLiteral("kilmorSidebar"));
-        sidebar->setMinimumWidth(205);
-        sidebar->setMaximumWidth(245);
+        sidebar->setFixedSize(250, 480);
         auto* sidebarLayout = new QVBoxLayout(sidebar);
         sidebarLayout->setContentsMargins(16, 22, 16, 18);
         sidebarLayout->setSpacing(10);
@@ -404,7 +410,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         launchLayout->addWidget(launchButton);
         contentLayout->addWidget(launchBar);
 
-        ui->horizontalLayout->addWidget(sidebar);
+        ui->horizontalLayout->addWidget(sidebar, 0, Qt::AlignLeft | Qt::AlignVCenter);
         ui->horizontalLayout->addWidget(content, 1);
     }
     // The cat background
