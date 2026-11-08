@@ -1,25 +1,33 @@
-# KilmorRPG Amethyst theme
+# KilmorRPG Amethyst
 
-This theme is the first integration pass for the approved KilmorRPG launcher mockup.
-It applies the dark amethyst palette, translucent surfaces and stone-like purple controls
-while retaining the launcher's existing functional widgets and actions.
+This branch contains the first functional UI implementation based on the approved
+KilmorRPG mockup. It adds the dark amethyst palette, stone-like controls, a left
+navigation panel (Play, News, Profile, Settings), and a large Play action.
 
-## Required background asset
+The navigation buttons are connected to the launcher's existing actions. The real
+instance browser remains in place; the Play buttons launch the selected instance
+instead of replacing launcher functionality with a static image.
 
-Place the approved original background image at:
+## Artwork still required
+
+The original KilmorRPG artwork is not yet packaged in this branch. The approved
+background asset must be added as:
 
 `themes/KilmorRPG/resources/KilmorRPG_background.jpg`
 
-The stylesheet references it through Qt's `theme:` search path. The image itself is
-not duplicated in this source-only theme commit; it must be added from the approved
-KilmorRPG artwork before packaging the theme.
+Once that original asset is committed, the central area can display the approved
+scene without baking fake controls into a screenshot. The original mockup's
+characters, logo, colors and composition must remain unchanged.
 
 ## Install
 
 Copy the complete `KilmorRPG` folder into the launcher's application themes directory
 (the directory opened by **Folders → Widget Themes**), then select **KilmorRPG Amethyst**
-in the appearance settings. Restart the launcher if the theme list was already open.
+in appearance settings. Restart the launcher if the theme list was already open.
 
-This pass styles the existing Prism-derived launcher widgets. The full custom home layout
-from the mockup (dedicated left navigation panel and custom play/profile composition)
-requires a separate UI implementation pass; it is not faked as a static screenshot.
+## Current status
+
+- Functional left navigation and Play controls: implemented.
+- Stone/amethyst styling: implemented.
+- Original background artwork: pending asset packaging.
+- Windows build verification: pending CI run.
