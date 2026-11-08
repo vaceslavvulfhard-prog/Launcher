@@ -14,4 +14,4 @@ services:
       - key: ELY_CLIENT_SECRET
         sync: false
       - key: ELY_REDIRECT_URI
-        value: https://kilmorrpg-ely-auth.onrender.com/oauth/ely
+        sync: false
