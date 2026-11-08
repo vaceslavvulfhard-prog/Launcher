@@ -4,6 +4,7 @@
 #include "minecraft/auth/AuthStep.h"
 
 #include <QNetworkReply>
+#include <QUrl>
 #include <QTimer>
 
 class ElyStep : public AuthStep {
