@@ -1,4 +1,4 @@
-/* KilmorRPG Amethyst theme — background image is supplied beside this file. */
+/* KilmorRPG Amethyst theme. Original scene artwork will be packaged separately. */
 QMainWindow, QWidget#centralWidget {
     background-color: #171020;
     color: #eee4ff;
