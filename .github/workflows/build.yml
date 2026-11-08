@@ -157,9 +157,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p launcher/resources/kilmorrpg
-          curl --fail --location --retry 3 --retry-delay 2 \\
-            "https://drive.google.com/uc?export=download&id=1_QAUVj1of4PaX4KEfGXfSAJ-LfGF7UGD" \\
-            --output launcher/resources/kilmorrpg/background.png
+          curl --fail --location --retry 3 --retry-delay 2 "https://drive.google.com/uc?export=download&id=1_QAUVj1of4PaX4KEfGXfSAJ-LfGF7UGD" --output launcher/resources/kilmorrpg/background.png
           python -c "from pathlib import Path; p=Path('launcher/resources/kilmorrpg/background.png'); assert p.read_bytes().startswith(bytes.fromhex('89504e470d0a1a0a')), 'KilmorRPG background download is not a PNG'"
 
       - name: Configure project
