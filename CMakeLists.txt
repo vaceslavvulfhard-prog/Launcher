@@ -265,7 +265,7 @@ set(Launcher_MSA_CLIENT_ID "" CACHE STRING "Client ID you can get from Microsoft
 
 # By using this key in your builds you accept the terms of use laid down in
 # https://account.ely.by/rules
-set(Launcher_ELY_CLIENT_ID "" CACHE STRING "Client ID you can get from Ely.by Accounts for developers when you register an application")
+set(Launcher_ELY_CLIENT_ID "4b6b1f55-6fbe-4977-aee1-63240d59b94d" CACHE STRING "Client ID you can get from Ely.by Accounts for developers when you register an application")
 
 # By using this key in your builds you accept the terms and conditions laid down in
 # https://support.curseforge.com/en/support/solutions/articles/9000207405-curse-forge-3rd-party-api-terms-and-conditions
