@@ -132,6 +132,44 @@ app.get("/auth/result/:sessionId", (req, res) => {
   return res.json({ status: "complete", tokens });
 });
 
+// Refresh tokens on the server so the Ely.by client secret never ships in the launcher.
+app.post("/auth/refresh", async (req, res) => {
+  if (!configReady()) {
+    return res.status(503).json({ error: "OAuth service is not configured yet." });
+  }
+
+  const refreshToken = req.body && req.body.refresh_token;
+  if (typeof refreshToken !== "string" || refreshToken.length < 10 || refreshToken.length > 4096) {
+    return res.status(400).json({ error: "A valid refresh token is required." });
+  }
+
+  try {
+    const body = new URLSearchParams({
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+      grant_type: "refresh_token",
+      refresh_token: refreshToken
+    });
+    const tokenResponse = await fetch("https://account.ely.by/api/oauth2/v1/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body
+    });
+    const tokenData = await tokenResponse.json();
+
+    if (!tokenResponse.ok) {
+      console.error("Ely.by refresh failed:", tokenResponse.status);
+      return res.status(401).json({ error: "refresh_failed" });
+    }
+
+    res.set("Cache-Control", "no-store");
+    return res.json({ status: "complete", tokens: tokenData });
+  } catch (err) {
+    console.error("Ely.by refresh request failed:", err.message);
+    return res.status(502).json({ error: "network_error" });
+  }
+});
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`KilmorRPG Ely.by auth bridge listening on port ${PORT}`);
 });
