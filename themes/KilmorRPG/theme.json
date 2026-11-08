@@ -1,0 +1,22 @@
+{
+  "name": "KilmorRPG Amethyst",
+  "widgets": "Fusion",
+  "qssFilePath": "themeStyle.qss",
+  "colors": {
+    "Window": "#171020",
+    "WindowText": "#eee4ff",
+    "Base": "#171020",
+    "AlternateBase": "#241632",
+    "ToolTipBase": "#241632",
+    "ToolTipText": "#f4eaff",
+    "Text": "#eee4ff",
+    "Button": "#332044",
+    "ButtonText": "#f4eaff",
+    "BrightText": "#ff6b75",
+    "Link": "#c58cff",
+    "Highlight": "#8b45c5",
+    "HighlightedText": "#ffffff",
+    "fadeColor": "#171020",
+    "fadeAmount": 0.35
+  }
+}
