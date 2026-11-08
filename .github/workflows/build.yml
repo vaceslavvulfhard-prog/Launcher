@@ -10,6 +10,7 @@ on:
       - "develop"
       - "release-*"
       - "feature/kilmorrpg-modpack-installer"
+      - "feature/kilmorrpg-ui-theme"
     paths:
       # File types
       - "**.cpp"
