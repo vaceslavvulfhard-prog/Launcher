@@ -24,5 +24,6 @@ The exact value of `ELY_REDIRECT_URI` must also be entered in the Ely.by applica
 - `POST /auth/start` — returns `session_id` and `authorization_url`
 - `GET /oauth/ely` — Ely.by callback; exchanges the code server-side
 - `GET /auth/result/:sessionId` — launcher polls for tokens
+- `POST /auth/refresh` — refreshes an Ely.by access token server-side; accepts a JSON `refresh_token` and returns the new token response
 
-The session state and tokens are held in memory for a short time. This is suitable for a single-instance hobby/testing service, not high-availability production. The launcher must treat `session_id` as a secret and must not log or expose it.
+The session state and tokens are held in memory for a short time. This is suitable for a single-instance hobby/testing service, not high-availability production. The launcher must treat `session_id` and refresh tokens as secrets and must not log or expose them. The Ely.by client secret is used only by this service and must never be embedded in the desktop launcher.

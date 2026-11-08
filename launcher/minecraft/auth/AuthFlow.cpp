@@ -50,6 +50,7 @@ AuthFlow::AuthFlow(AccountData* data, Action action) : Task(), m_data(data)
         } else {
             auto oauthStep = makeShared<ElyStep>(m_data, action == Action::Refresh);
             connect(oauthStep.get(), &ElyStep::authorizeWithBrowser, this, &AuthFlow::authorizeWithBrowser);
+            connect(this, &Task::aborted, oauthStep.get(), &ElyStep::abort);
             m_steps.append(oauthStep);
         }
         m_steps.append(makeShared<ElyYggdrasilTokenStep>(m_data));
