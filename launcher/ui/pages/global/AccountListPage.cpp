@@ -90,6 +90,9 @@ AccountListPage::AccountListPage(QWidget* parent) : QMainWindow(parent), ui(new 
         ui->actionAddMicrosoft->setVisible(false);
         ui->actionAddMicrosoft->setToolTip(tr("No Microsoft Authentication client ID was set."));
     }
+
+    // KilmorRPG uses Ely.by accounts exclusively. Offline accounts are intentionally unavailable.
+    ui->actionAddOffline->setVisible(false);
 }
 
 AccountListPage::~AccountListPage()
