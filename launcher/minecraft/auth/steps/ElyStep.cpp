@@ -186,8 +186,10 @@ void ElyStep::abort()
 {
     m_pollTimer.stop();
     if (m_reply) {
-        m_reply->abort();
-        m_reply->deleteLater();
+        auto* reply = m_reply;
         m_reply = nullptr;
+        reply->disconnect(this);
+        reply->abort();
+        reply->deleteLater();
     }
 }
