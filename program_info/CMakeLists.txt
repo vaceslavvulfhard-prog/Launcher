@@ -9,10 +9,10 @@ if(UNIX)
 endif()
 
 set(Launcher_CommonName "ElyPrismLauncher")
-set(Launcher_DisplayName "PineconeMC")
+set(Launcher_DisplayName "KilmorRPG")
 set(Launcher_AppID "io.github.elyprismlauncher.ElyPrismLauncher")
 set(Launcher_Domain "pineconemc.ru")
-set(Launcher_Git "https://github.com/ElyPrismLauncher/Launcher")
+set(Launcher_Git "https://github.com/vaceslavvulfhard-prog/Launcher")
 
 set(Launcher_Name "${Launcher_CommonName}" PARENT_SCOPE)
 set(Launcher_DisplayName "${Launcher_DisplayName}" PARENT_SCOPE)
