@@ -1,4 +1,4 @@
-/* KilmorRPG Amethyst theme. Original scene artwork will be packaged separately. */
+/* KilmorRPG Amethyst theme. */
 QMainWindow, QWidget#centralWidget {
     background-color: #171020;
     color: #eee4ff;
@@ -120,7 +120,7 @@ QPushButton#kilmorNavButton:pressed {
     border-bottom-width: 1px;
 }
 QWidget#kilmorContent {
-    background-color: rgba(18, 12, 26, 105);
+    background-color: rgba(18, 12, 26, 45);
 }
 QWidget#kilmorLaunchBar {
     background-color: rgba(28, 18, 40, 225);
@@ -157,4 +157,13 @@ QPushButton#kilmorMainPlayButton:pressed {
 QLabel#kilmorVersion {
     color: #aa91bd;
     font-size: 10px;
+}
+
+
+/* Approved KilmorRPG rabbit-heroes scene. */
+QWidget#centralWidget {
+    border-image: url(:/kilmorrpg/background.png) 0 0 0 0 stretch stretch;
+}
+QFrame#kilmorSidebar {
+    background-color: rgba(24, 15, 34, 205);
 }
