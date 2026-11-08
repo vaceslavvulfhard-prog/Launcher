@@ -333,7 +333,76 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         view->setSourceOfGroupCollapseStatus(
             [](const QString& groupName) -> bool { return APPLICATION->instances()->isGroupCollapsed(groupName); });
         connect(view, &InstanceView::groupStateChanged, APPLICATION->instances(), &InstanceList::on_GroupStateChanged);
-        ui->horizontalLayout->addWidget(view);
+        // KilmorRPG home layout: keep the real instance browser and launcher actions.
+        auto sidebar = new QFrame(ui->centralWidget);
+        sidebar->setObjectName(QStringLiteral("kilmorSidebar"));
+        sidebar->setMinimumWidth(205);
+        sidebar->setMaximumWidth(245);
+        auto* sidebarLayout = new QVBoxLayout(sidebar);
+        sidebarLayout->setContentsMargins(16, 22, 16, 18);
+        sidebarLayout->setSpacing(10);
+
+        auto* journeyTitle = new QLabel(tr("ПУТЕШЕСТВИЕ"), sidebar);
+        journeyTitle->setObjectName(QStringLiteral("kilmorEyebrow"));
+        auto* brandTitle = new QLabel(QStringLiteral("KilmorRPG"), sidebar);
+        brandTitle->setObjectName(QStringLiteral("kilmorBrand"));
+        auto* subtitle = new QLabel(tr("DUNGEON HEROES"), sidebar);
+        subtitle->setObjectName(QStringLiteral("kilmorSubtitle"));
+        sidebarLayout->addWidget(journeyTitle);
+        sidebarLayout->addWidget(brandTitle);
+        sidebarLayout->addWidget(subtitle);
+        sidebarLayout->addSpacing(22);
+
+        auto makeNavButton = [sidebar](const QString& text, const QString& name) {
+            auto* button = new QPushButton(text, sidebar);
+            button->setObjectName(name);
+            button->setMinimumHeight(42);
+            button->setCursor(Qt::PointingHandCursor);
+            return button;
+        };
+        auto* playNav = makeNavButton(tr("Играть"), QStringLiteral("kilmorNavButton"));
+        auto* newsNav = makeNavButton(tr("Новости"), QStringLiteral("kilmorNavButton"));
+        auto* profileNav = makeNavButton(tr("Профиль"), QStringLiteral("kilmorNavButton"));
+        auto* settingsNav = makeNavButton(tr("Настройки"), QStringLiteral("kilmorNavButton"));
+        sidebarLayout->addWidget(playNav);
+        sidebarLayout->addWidget(newsNav);
+        sidebarLayout->addWidget(profileNav);
+        sidebarLayout->addWidget(settingsNav);
+        sidebarLayout->addStretch(1);
+
+        auto* versionLabel = new QLabel(tr("Minecraft 1.21.1 · Fabric"), sidebar);
+        versionLabel->setObjectName(QStringLiteral("kilmorVersion"));
+        sidebarLayout->addWidget(versionLabel);
+
+        connect(playNav, &QPushButton::clicked, ui->actionLaunchInstance, &QAction::trigger);
+        connect(newsNav, &QPushButton::clicked, this, &MainWindow::on_actionMoreNews_triggered);
+        connect(profileNav, &QPushButton::clicked, this, &MainWindow::on_actionManageAccounts_triggered);
+        connect(settingsNav, &QPushButton::clicked, this, &MainWindow::on_actionSettings_triggered);
+
+        auto* content = new QWidget(ui->centralWidget);
+        content->setObjectName(QStringLiteral("kilmorContent"));
+        auto* contentLayout = new QVBoxLayout(content);
+        contentLayout->setContentsMargins(18, 14, 18, 18);
+        contentLayout->setSpacing(12);
+        contentLayout->addWidget(view, 1);
+
+        auto* launchBar = new QWidget(content);
+        launchBar->setObjectName(QStringLiteral("kilmorLaunchBar"));
+        auto* launchLayout = new QHBoxLayout(launchBar);
+        launchLayout->setContentsMargins(0, 0, 0, 0);
+        auto* launchHint = new QLabel(tr("Выберите профиль сборки и отправляйтесь в приключение"), launchBar);
+        launchHint->setObjectName(QStringLiteral("kilmorLaunchHint"));
+        auto* launchButton = new QPushButton(tr("ИГРАТЬ"), launchBar);
+        launchButton->setObjectName(QStringLiteral("kilmorMainPlayButton"));
+        launchButton->setMinimumSize(210, 54);
+        launchButton->setCursor(Qt::PointingHandCursor);
+        connect(launchButton, &QPushButton::clicked, ui->actionLaunchInstance, &QAction::trigger);
+        launchLayout->addWidget(launchHint, 1);
+        launchLayout->addWidget(launchButton);
+        contentLayout->addWidget(launchBar);
+
+        ui->horizontalLayout->addWidget(sidebar);
+        ui->horizontalLayout->addWidget(content, 1);
     }
     // The cat background
     {
