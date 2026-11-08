@@ -4,7 +4,15 @@ QMainWindow, QWidget#centralWidget {
     color: #eee4ff;
 }
 QWidget#centralWidget {
-    border-image: url(theme:KilmorRPG_background.jpg) 0 0 0 0 stretch stretch;
+    background-color: #171020;
+}
+
+/* Keep the instance browser translucent so a packaged KilmorRPG artwork layer
+   can show through without replacing the launcher's real instance widgets. */
+QWidget#centralWidget QAbstractScrollArea,
+QWidget#centralWidget QTreeView,
+QWidget#centralWidget QListView {
+    background-color: rgba(20, 12, 30, 145);
 }
 QAbstractItemView, QListView, QTreeView, QTableView {
     background-color: rgba(20, 12, 30, 165);
