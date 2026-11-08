@@ -126,8 +126,24 @@ jobs:
           python -c "from pathlib import Path; p=Path('launcher/resources/kilmorrpg/background.png'); assert p.read_bytes().startswith(bytes.fromhex('89504e470d0a1a0a')), 'KilmorRPG background download is not a PNG'"
 
       - name: Configure project
+        shell: bash
         run: |
-          cmake --preset "$CMAKE_PRESET"
+          # vcpkg source archives are occasionally served with transient 5xx errors.
+          # Retry CMake configuration so a temporary GitHub/CDN outage does not
+          # abort the only Windows build before compilation starts.
+          for attempt in 1 2 3 4 5; do
+            echo "CMake configure attempt $attempt/5"
+            if cmake --preset "$CMAKE_PRESET"; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              echo "CMake configuration failed after 5 attempts."
+              exit 1
+            fi
+            delay=$((attempt * 20))
+            echo "Configuration failed; retrying in ${delay}s..."
+            sleep "$delay"
+          done
 
       - name: Run build
         run: |
