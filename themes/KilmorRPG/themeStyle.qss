@@ -1,0 +1,69 @@
+/* KilmorRPG Amethyst theme — background image is supplied beside this file. */
+QMainWindow, QWidget#centralWidget {
+    background-color: #171020;
+    color: #eee4ff;
+}
+QWidget#centralWidget {
+    border-image: url(theme:KilmorRPG_background.jpg) 0 0 0 0 stretch stretch;
+}
+QAbstractItemView, QListView, QTreeView, QTableView {
+    background-color: rgba(20, 12, 30, 165);
+    color: #eee4ff;
+    alternate-background-color: rgba(42, 24, 58, 175);
+    border: 1px solid #8150a9;
+    selection-background-color: rgba(125, 62, 177, 220);
+    selection-color: #ffffff;
+    outline: 0;
+}
+QToolBar {
+    background-color: rgba(27, 17, 40, 225);
+    border: 1px solid #68418c;
+    spacing: 7px;
+    padding: 5px;
+}
+QToolBar QToolButton, QPushButton {
+    color: #f4eaff;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #624080, stop:0.45 #43265f, stop:1 #2a1a3b);
+    border: 1px solid #b17cdb;
+    border-top-color: #d2a5f1;
+    border-bottom-color: #4b2d68;
+    border-radius: 7px;
+    padding: 7px 12px;
+    min-height: 24px;
+}
+QToolBar QToolButton:hover, QPushButton:hover {
+    background-color: #71459a;
+    border-color: #e0b9ff;
+}
+QToolBar QToolButton:pressed, QPushButton:pressed {
+    background-color: #321b49;
+    border-color: #a86bda;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+QMenuBar, QMenu {
+    background-color: #21152e;
+    color: #eee4ff;
+}
+QMenu::item:selected, QMenuBar::item:selected {
+    background-color: #69408c;
+}
+QStatusBar {
+    background-color: rgba(22, 14, 32, 230);
+    color: #cdb5e6;
+    border-top: 1px solid #68418c;
+}
+QLineEdit, QComboBox, QSpinBox, QPlainTextEdit, QTextEdit {
+    background-color: #1c1327;
+    color: #f4eaff;
+    border: 1px solid #755093;
+    border-radius: 5px;
+    padding: 5px;
+}
+QHeaderView::section {
+    background-color: #352344;
+    color: #eee4ff;
+    border: 1px solid #68418c;
+    padding: 5px;
+}
