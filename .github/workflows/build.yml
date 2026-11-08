@@ -38,7 +38,7 @@ on:
       build-type:
         description: Type of build (Debug or Release)
         type: string
-        default: Debug
+        default: Release
       environment:
         description: Deployment environment to run under
         type: string
@@ -118,7 +118,7 @@ jobs:
     env:
       ARTIFACT_NAME: ${{ matrix.artifact-name }}-Qt6
       BUILD_PLATFORM: official
-      BUILD_TYPE: ${{ inputs.build-type || 'Debug' }}
+      BUILD_TYPE: ${{ inputs.build-type || 'Release' }}
       CMAKE_PRESET: ${{ matrix.cmake-preset }}
 
       MACOSX_DEPLOYMENT_TARGET: ${{ matrix.macosx-deployment-target }}
